@@ -1,3 +1,4 @@
+from bisect import bisect_left
 n, m, r = map(int, input().split())
 a = list(map(int, input().split()))
 b = list(map(int, input().split()))
@@ -14,10 +15,8 @@ max_area = -1
 a_interval.sort()
 b.sort()
 
-for i in a_interval:
-    if i / 2 > r: break
-    for j in b:
-        if j / 2 > r: break
-        area = i * j * 0.5
-        if area <= r and area > max_area: max_area = area
+r_b = [2*r/i for i in b]
+
+for idx, k in enumerate(r_b):
+    bisect_left(k, a)
 print(round(max_area, 1))
